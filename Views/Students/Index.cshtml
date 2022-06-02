@@ -1,0 +1,277 @@
+﻿@model ContosoUniversity.Models.PaginatedList<ContosoUniversity.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    
+    
+    #studtab table,tr,th,td{
+        border:1.5px solid rgba(57, 144, 182, 0.74);
+        padding:10px 10px 10px 30px;
+        
+       
+    }
+    #studtab table{
+        margin-left:150px;
+        width:70%;
+        height:50%;
+    }
+    #studtab thead{
+        background-color:rgba(242, 121, 50, 0.78);
+    }
+    #next{
+       
+        width:80%;
+        
+    }
+       #next1{
+           padding-left:840px;
+       }
+    #next1 a{
+        width:100%;
+         background-color:aqua;
+        
+    }
+    #prev a{
+        width:60%;
+        background-color:#ab81c8;
+    }
+    
+    #ead {
+        
+        padding: 10px 3px 80px 5px;
+    }
+    #textb{
+        margin-top:-10px;
+        width:470px;
+        height:40px;
+        border-radius:25px;
+        margin-left:10px;
+        text-align:center;
+    }
+    #sear{
+         margin-top:-10px;
+        margin-left:165px;
+        height:40px;
+        border-radius:25px;
+    }
+    .lin{
+        color:white;
+        font-size:15px;
+        width:55px;
+        height:30px;
+     }
+  .lin :hover{
+        text-decoration:none;
+        
+    }
+  #ld{
+      background-color: black;
+      color: azure;
+      display:inline;
+      text-decoration: none;
+      border: 1px solid #ff0000;
+      margin-left:250px;
+      margin-top:20px;
+      border-radius:10px;
+      padding: 10px 25px 10px 25px;
+  }
+
+  .drop{
+      margin-left:200px;
+      padding-top:10px;
+      text-decoration:none;
+      width:100px;
+      background: transparent;
+      color:#3151ac;
+      display:none;
+      cursor:pointer;
+  }
+  .lin:hover .drop{
+      display:block;
+  }
+#asd{
+    border: 1px solid black;
+    background:transparent;
+    font-weight:800;
+    padding-left:33px;
+}
+#asd:hover{
+    color:white;
+    background:red;
+}
+#tbrow{
+    padding-left:20px;
+}
+#tbrow a,#backdiv a{
+    background-color:rgba(206, 174, 22, 0.49);
+    border-radius:18px;
+    margin-right:10px;
+    margin-left:5px;
+    padding:5px 5px 5px 5px;
+}
+#tbrow a:hover,#backdiv a:hover{
+    background-color:rgba(9, 47, 226, 0.69);
+    color:black;
+    text-decoration:none;
+}
+#tbrow:hover{
+    color:#e83939;
+    background-color:#e9ed92;
+}
+#crea{
+    padding-bottom:40px;
+    padding-top:50px;
+}
+#crea a{
+    margin-left:5px;
+    padding:10px 10px 10px 10px;
+    background-color:darkgreen;
+    color:bisque;
+    border-radius:20px;
+}
+#crea a:hover{
+    color:black;
+    text-decoration:none;
+    background-color:red;
+}
+#backdiv a{
+    margin-left:30px;
+}
+</style>
+<div class="studind">
+
+
+    <h2>Index</h2>
+    <div id="crea">
+
+        <a asp-action="Create">Create New</a>
+
+    </div>
+
+    @{
+        if (ViewData["NameSortParm"].Equals("name_desc"))
+        {
+            ViewBag.val = "Z-A";
+        }
+        else
+        {
+            ViewBag.val = "A-Z";
+
+        }
+    }
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <div class="row" id="ead">
+                <div class="col-lg-3">
+                    <div class="lin" id="sad">
+                        <p id="ld">sort</p>
+
+                        <div class="drop">
+
+                            <div id="asd">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@ViewBag.val</a>
+                            </div>
+                            <div id="asd">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Date</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <input id="textb" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                </div>
+                <div class="col-lg-3">
+
+                    <input id="sear" type="submit" value="Search" class="btn btn-success" />
+
+                </div>
+            </div>
+
+        </div>
+    </form>
+    @{
+        if (Model.PageIndex == 1)
+        {
+            TempData["visible"] = "hidden";
+        }
+        else
+        {
+            TempData["visible"] = "visible";
+        }
+    }
+<div id="backdiv">
+    <a asp-action="Index" style="visibility:@TempData["visible"]">Back to Full List</a>
+</div>
+    
+    <div id="studtab">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Enrollment Date
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr id="tbrow">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstMidName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
+                            <a asp-action="Details" asp-route-id="@item.ID">Details</a> 
+                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <div class="row">
+
+        <div class="col-lg-2" id="prev">
+            <a asp-action="Index"
+               asp-route-sortOrder="@ViewData["CurrentSort"]"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               asp-route-currentFilter="@ViewData["CurrentFilter"]"
+               class="btn btn-default @prevDisabled">
+                Previous
+            </a>
+        </div>
+
+        <div class="col-lg-2" id="next">
+            <div id="next1">
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-default @nextDisabled">
+                    Next
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+</div>

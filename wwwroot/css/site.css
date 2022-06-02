@@ -1,0 +1,117 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.globodyren{
+    margin-left:100px;
+    margin-top:100px;
+}
+.globackImg {
+    width: 100%;
+    background-image: linear-gradient(rgba(204,204,204,0.5),rgba(204,204,204,0.5)),url('university.jpg');
+    padding-top: 40px;
+    padding-bottom: 10px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.insind {
+    width: 100%;
+    background-image: url('200.jpg');
+    padding-top: 40px;
+    padding-bottom: 10px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.unitable{
+    border:2px solid rgba(0, 0, 0, 0.80);
+    margin-left:250px;
+    margin-right:40px;
+  
+}
+.unianc{
+    background-color:darkorange;
+    padding:3px 3px 3px 3px;
+    border-radius:15px;
+    color:#000000;
+}
+.unianc:hover{
+    background-color:rgba(112, 221, 27, 0.72);
+    color:brown;
+    text-decoration:none;
+}
+.unitable thead,th{
+    background-color:rgba(59, 164, 187, 0.62);
+}
+
+    .unitable td, tr, th {
+        border: 2px solid rgba(0, 0, 0, 0.80);
+        padding: 20px 20px 20px 20px;
+    }
+    .unitable tr:hover{
+        background-color:rgba(217, 115, 115, 0.73);
+        color:khaki;
+    }
+.studind {
+    width: 100%;
+    background-image: url('5000.jpg');
+    padding-top: 40px;
+    padding-bottom: 10px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.pras {
+    
+    width: 100%;
+    background-image: url('50.webp');
+    padding-top:50px;
+    padding-bottom:80px;
+    background-position: center;
+    background-size: cover;
+    position:relative;
+    
+    
+}
+#sample {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+    border:3px solid darkred;
+    background-image: url('20.jpg');
+    color: black;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}

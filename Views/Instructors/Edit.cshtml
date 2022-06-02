@@ -1,0 +1,132 @@
+﻿@model ContosoUniversity.Models.Instructor
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<style>
+   
+    table{
+        border-color:darkred;
+        border-style:solid;
+    }
+    tr{
+        width:40%;
+        padding:10px 10px 10px 10px;
+    }
+    td{
+        padding-left:4em;
+        width:250px;
+        padding-top:1em;
+        padding-bottom:2em;
+        font-weight:700;
+    }
+    
+   #rf{
+        padding:25px 450px 50px 350px;
+
+    }
+    #sample1{
+        
+       
+        margin-left:10%;
+        padding-left:50px;
+    }
+    #submitid{
+        padding-left:500px;
+        padding-bottom:20px;
+       
+    }
+    #back{
+        margin-top:30px;
+        margin-left:525px;
+       padding-bottom:50px;
+        font-size:20px;
+        
+    }
+    #back :hover{
+        text-decoration:none;
+         background: #ff6666;
+         color:azure;
+         transition:0.3s; 
+    }
+    #aback{
+       background: #5cb85c;
+       border-radius:5px;
+        padding: 5px 10px 5px 10px;
+        color:white;
+        font-weight:400;
+    }
+   
+</style>
+<body>
+    <section class="pras">
+    <h2>Edit</h2>
+
+    <h4>Instructor</h4>
+       <div class="row" id="sample">
+        <div class="">
+            <form asp-action="Edit">
+                <div id="rf">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ID" />
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FirstMidName" class="control-label"></label>
+                        <input asp-for="FirstMidName" class="form-control" />
+                        <span asp-validation-for="FirstMidName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="HireDate" class="control-label"></label>
+                        <input asp-for="HireDate" class="form-control" />
+                        <span asp-validation-for="HireDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OfficeAssignment.Location" class="control-label"></label>
+                        <input asp-for="OfficeAssignment.Location" class="form-control" />
+                        <span asp-validation-for="OfficeAssignment.Location" class="text-danger" />
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div id="sample1">
+                        <table>
+                            <tr>
+                                @{
+                                    int cnt = 0;
+                                    List<ContosoUniversity.Models.SchoolViewModels.AssignedCourseData> courses = ViewBag.Courses;
+
+                                    foreach (var course in courses)
+                                    {
+                                        if (cnt++ % 3 == 0)
+                                        {
+                                        @:</tr><tr>
+                                        }
+                                        @:<td>
+                                            <input type="checkbox"
+                                                   name="selectedCourses"
+                                                   value="@course.CourseID"
+                                                   @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                            @course.CourseID @:  @course.Title
+                                        @:</td>
+                                    }
+                                @:</tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group" id="submitid">
+                        <input type="submit" value="Save" class="btn btn-success" id="DES" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="back">
+            <a asp-action="Index" id="aback">Back to List</a>
+        </div>
+    </section>
+    </body>
